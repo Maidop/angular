@@ -1,0 +1,36 @@
+::ng-deep .deep {
+  color: black;
+}
+
+.verde {
+  background-color: #67e755!important;
+  color: #000000;
+}
+
+.azul {
+  background-color: #6194fb!important;
+  color: #000000;
+}
+
+.amarelo {
+  background-color: #fbef29!important;
+  color: #000000;
+}
+
+.vermelho {
+  background-color: #cf545f!important;
+  color: #000000;
+}
+
+.zoom {
+  transform: scale(1);
+  &:hover{
+    transform: scale(1.01);
+  }
+  transition: 1s;
+}
+
+.line {
+  height: 2px;
+  background-image: linear-gradient(to right, #00000000, #00000080 30%, #00000080 70%, #00000000);
+}
