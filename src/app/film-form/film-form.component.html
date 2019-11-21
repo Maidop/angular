@@ -1,0 +1,51 @@
+<div class="card mt-3">
+  <div class="card-body">
+    <div class="card-title">Formulário Filme</div>
+    <div class="row">
+      <div class="col-12">
+        <label for="id">Código</label>
+      </div>
+      <div class="col-12">
+        <input id="id" type="number"
+               [disabled]="editar"
+               [(ngModel)]="filme.id"/>
+      </div>
+      <div class="col-12">
+        <label for="cadastro">Data de Cadastro</label>
+      </div>
+      <div class="col-12">
+        <input id="cadastro" type="text" [(ngModel)]="filme.dataCadastro" style="width: 150px;"/>
+      </div>
+      <div class="col-12">
+        <label for="titulo">Titulo</label>
+      </div>
+      <div class="col-12">
+        <input id="titulo" type="text" [(ngModel)]="filme.titulo"/>
+      </div>
+      <div class="col-12">
+        <label for="valor">Preço do Bilhete</label>
+      </div>
+      <div class="col-12">
+        <input id="valor" type="number" [(ngModel)]="filme.precoBilhete"/>
+      </div>
+      <div class="col-12">
+        <p-checkbox id="inativo" [(ngModel)]="filme.inativo" binary="true"></p-checkbox>
+        <label for="inativo">   Inativo</label>
+      </div>
+      <div class="col-12">
+        <label>Dimensão</label>
+      </div>
+      <div class="col-12">
+        <p-checkbox  [(ngModel)]="filme.dimensao" binary="true"></p-checkbox>
+        <label>   3D</label>
+      </div>
+      <div class="col-12">
+        <p-multiSelect [options]="atorList" [(ngModel)]="filme.atorList" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+      </div>
+<!--      Fim Formulário-->
+      <div class="col-12">
+        <button class="btn btn-success mt-2" (click)="adicionar()">{{editar ? 'Editar' : 'Adicionar'}}</button>
+      </div>
+    </div>
+  </div>
+</div>

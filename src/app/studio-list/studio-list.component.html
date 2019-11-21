@@ -1,0 +1,46 @@
+<div class="card mt-3">
+  <div class="card-body">
+    <div class="card-title">Lista de Atores</div>
+    <a [routerLink]="'/studio-form'" class="btn btn-dark">Cadastrar</a>
+    <div class="row">
+      <div class="col-12">
+        <table class="mt-3 table table-striped table-bordered table-hover">
+          <thead>
+          <tr class="thead-dark">
+            <th class="text-center" scope="col">#</th>
+            <th class="text-center" scope="col">Nome</th>
+            <th class="text-center" scope="col">País</th>
+            <th class="text-center" scope="col">Quantidade de Filmes</th>
+            <th class="text-center" scope="col">Ações</th>
+
+
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let studio of studioList$ | async">
+            <tr>
+              <th class="text-center" scope="row">{{ studio.id }}</th>
+              <td>{{ studio.nome }}</td>
+              <td>{{ studio.pais }}</td>
+              <td class="text-center" >{{ studio.quantidadeFilmes }}</td>
+              <td class="text-right" >
+                <button class="btn btn-primary mr-2" (click)="editar(studio)">Editar</button>
+                <button class="btn btn-danger" (click)="excluir(studio)">Excluir</button>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+
+        <div *ngIf="studioEditar != null" class="col-12">
+          <app-studio-form [studio]="studioEditar"
+                         (onPersist)="atualizarRegistros()"
+                         [editar]="true">
+          </app-studio-form>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

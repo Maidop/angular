@@ -4,3 +4,20 @@
   }
   height: 2.5em;
 }
+
+.btn-outline-violet {
+  color: #8525c3;
+  background-color: transparent;
+  background-image: none;
+  border-color: #8525c3;
+  &:hover {
+    color: #fff;
+    background-color: #8525c3;
+    border-color: #8525c3;
+  }
+}
+
+.bg-nav {
+  background-color: #9a9a9a;
+}
+

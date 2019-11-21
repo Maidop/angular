@@ -1,5 +1,6 @@
 import {Ator} from './Ator';
 import {ClassificacaoEnum} from '../enumerations/classificacao.enum';
+import {Studio} from './Studio';
 
 export class Filme {
 
@@ -13,6 +14,7 @@ export class Filme {
   classificacao: ClassificacaoEnum;
   inativo: boolean;
   dimensao: boolean;
+  studio: Studio;
 
   constructor() {
     this.dataCadastro = new Date();

@@ -10,6 +10,19 @@ import {registerLocaleData} from '@angular/common';
 import { InativoPipe } from './pipe/inativo.pipe';
 import { DimensaoPipe } from './pipe/dimensao.pipe';
 import {NavBarComponent} from './component/nav-bar/nav-bar.component';
+import { AtorComponent } from './ator/ator.component';
+import { AtorFormComponent } from './ator-form/ator-form.component';
+import {FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+import { StudioListComponent } from './studio-list/studio-list.component';
+import { StudioFormComponent } from './studio-form/studio-form.component';
+import { FilmFormComponent } from './film-form/film-form.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ButtonModule} from 'primeng/button';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {CheckboxModule} from 'primeng/checkbox';
+import {CalendarModule} from 'primeng/calendar';
+
 
 
 registerLocaleData(localePt, 'pt');
@@ -21,11 +34,23 @@ registerLocaleData(localePt, 'pt');
     FilmeListComponent,
     InativoPipe,
     DimensaoPipe,
-    NavBarComponent
+    NavBarComponent,
+    AtorComponent,
+    AtorFormComponent,
+    StudioListComponent,
+    StudioFormComponent,
+    FilmFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    FormsModule,
+    AppRoutingModule,
+    RouterModule,
+    ButtonModule,
+    MultiSelectModule,
+    CalendarModule,
+    CheckboxModule
   ],
   providers: [
     {

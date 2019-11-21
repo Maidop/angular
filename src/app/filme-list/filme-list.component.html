@@ -12,35 +12,49 @@
             <th class="text-right" scope="col">Preço Bilhete</th>
             <th class="text-center" scope="col">Inativo</th>
             <th class="text-center" scope="col">Dimensão</th>
+            <th class="text-center" scope="col">Ações</th>
 
           </tr>
           </thead>
           <tbody>
           <ng-container *ngFor="let filme of filmeList$ | async">
-            <tr [class.verde]="filme.precoBilhete <= 10"
+            <tr> <!--[class.verde]="filme.precoBilhete <= 10"
                 [class.azul]="filme.precoBilhete > 10 && filme.precoBilhete < 20"
                 [class.amarelo]="filme.precoBilhete >= 20 && filme.precoBilhete <40"
                 [class.vermelho]="filme.precoBilhete >= 40"
                 [title]="setTootip(filme)"
                 [class.zoom]="filme"
-                *ngIf="filme">
+                *ngIf="filme" > -->
               <th scope="row">{{ filme.id }}</th>
               <td>{{ filme.dataCadastro | date:'dd/MM/yyyy' }}</td>
               <td>{{ filme.titulo }}</td>
               <td class="text-right">{{filme.precoBilhete | currency: 'BRL'}}</td>
               <td class="text-center">{{filme.inativo | inativo}}</td>
               <td class="text-center">{{filme.dimensao | dimensao}}</td>
+              <td class="text-right" >
+                <button class="btn btn-primary mr-2" (click)="editar(filme)">Editar</button>
+                <button class="btn btn-danger" (click)="excluir(filme)">Excluir</button>
+              </td>
             </tr>
           </ng-container>
+          <div class="linha"></div>
           <tr>
-            <td class="align-right">Registros: {{(filmeList$ | async).length }}</td>
+            <td colspan="5"></td>
+            <td class="text-right">Registros: {{(filmeList$ | async).length }}</td>
           </tr>
           <tr>
-            <td>Total: {{total | currency: 'BRL'}} R$</td>
+            <td colspan="5"></td>
+            <td class="text-right">Total: {{total | currency: 'BRL'}} R$</td>
           </tr>
           </tbody>
         </table>
         <div class="linha"></div>
+        <div *ngIf="filmeEditar != null" class="col-12">
+          <app-film-form [filme]="filmeEditar"
+                           (onPersist)="atualizarRegistros()"
+                           [editar]="true">
+          </app-film-form>
+        </div>
       </div>
     </div>
   </div>

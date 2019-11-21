@@ -4,6 +4,7 @@ import {Filme} from '../model/Filme';
 import {Observable} from 'rxjs';
 import {Title} from '@angular/platform-browser';
 import {iterator} from 'rxjs/internal-compatibility';
+import {Studio} from '../model/Studio';
 
 @Component({
   selector: 'app-filme-list',
@@ -13,6 +14,7 @@ import {iterator} from 'rxjs/internal-compatibility';
 export class FilmeListComponent implements OnInit, OnDestroy {
 
   filmeList$: Observable<Filme[]>;
+  filmeEditar: Filme;
   tooltip = '';
   total: number;
 
@@ -27,7 +29,25 @@ export class FilmeListComponent implements OnInit, OnDestroy {
     // this.filmeService.remove(filme);
     // this.filmeService.findAll().subscribe(filmeList => this.filmeList = filmeList);
     this.filmeList$ = this.filmeService.findAll();
-    this.total = this.filmeService.total(this.filmeList$);
+    this.total = this.filmeService.total();
+  }
+
+  editar(filme: Filme): void {
+    this.filmeEditar = JSON.parse(JSON.stringify(filme));
+  }
+
+  size(): Observable<number> {
+    return this.filmeService.size();
+  }
+
+  atualizarRegistros(): void {
+    this.filmeList$ = this.filmeService.findAll();
+    this.filmeEditar = null;
+  }
+
+  excluir(filme: Filme): void {
+    this.filmeService.remove(filme);
+    this.filmeList$ = this.filmeService.findAll();
   }
 
   private gerarFilmes() {
@@ -112,6 +132,9 @@ export class FilmeListComponent implements OnInit, OnDestroy {
     this.filmeService.add(filme10);
   }
 
+  getTotal(): Observable<number> {
+    return this.filmeService.getTotal();
+  }
 
   public setTootip(filme: Filme): string {
     if (filme.precoBilhete <= 10) {

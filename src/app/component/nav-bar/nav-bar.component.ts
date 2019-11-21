@@ -15,6 +15,8 @@ export class NavBarComponent implements OnInit {
     this.menuList = [];
     this.menuList.push({descricao : 'Home', rota : [''], icone: 'fa-home'});
     this.menuList.push({descricao : 'Filmes', rota : ['filme-list'], icone: 'fa-film'});
+    this.menuList.push({descricao : 'Ator', rota : ['ator'], icone: 'fa-user-secret'});
+    this.menuList.push({descricao : 'Studio', rota : ['studio-list'], icone: 'fa-video'});
   }
 
 }
