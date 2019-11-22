@@ -22,6 +22,11 @@ import {ButtonModule} from 'primeng/button';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {CheckboxModule} from 'primeng/checkbox';
 import {CalendarModule} from 'primeng/calendar';
+import {DropdownModule} from 'primeng/dropdown';
+import {DialogModule} from 'primeng/dialog';
+import {ScrollPanelModule} from 'primeng/primeng';
+
+
 
 
 
@@ -39,7 +44,7 @@ registerLocaleData(localePt, 'pt');
     AtorFormComponent,
     StudioListComponent,
     StudioFormComponent,
-    FilmFormComponent
+    FilmFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,10 @@ registerLocaleData(localePt, 'pt');
     ButtonModule,
     MultiSelectModule,
     CalendarModule,
-    CheckboxModule
+    CheckboxModule,
+    DropdownModule,
+    DialogModule,
+    ScrollPanelModule
   ],
   providers: [
     {

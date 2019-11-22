@@ -12,6 +12,7 @@ import {Title} from '@angular/platform-browser';
 export class AtorComponent implements OnInit {
   atorList$: Observable<Ator[]>;
   atorEditar: Ator;
+  display = false;
 
   constructor(private atorService: AtorService,
               private titleService: Title) { }
@@ -24,6 +25,11 @@ export class AtorComponent implements OnInit {
 
   editar(ator: Ator): void {
     this.atorEditar = JSON.parse(JSON.stringify(ator));
+    this.showDialog();
+  }
+
+  showDialog() {
+    this.display = true;
   }
 
   size(): Observable<number> {
@@ -33,6 +39,7 @@ export class AtorComponent implements OnInit {
   atualizarRegistros(): void {
     this.atorList$ = this.atorService.findAll();
     this.atorEditar = null;
+    this.display = false;
   }
 
   excluir(ator: Ator): void {

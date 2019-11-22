@@ -11,10 +11,10 @@
                [(ngModel)]="filme.id"/>
       </div>
       <div class="col-12">
-        <label for="cadastro">Data de Cadastro</label>
+        <label>Data de Cadastro</label>
       </div>
       <div class="col-12">
-        <input id="cadastro" type="text" [(ngModel)]="filme.dataCadastro" style="width: 150px;"/>
+        <p-calendar [(ngModel)]="filme.dataCadastro" dateFormat="dd/mm/yy" dataType="string"></p-calendar>
       </div>
       <div class="col-12">
         <label for="titulo">Titulo</label>
@@ -30,17 +30,26 @@
       </div>
       <div class="col-12">
         <p-checkbox id="inativo" [(ngModel)]="filme.inativo" binary="true"></p-checkbox>
-        <label for="inativo">   Inativo</label>
+        <label for="inativo" class="pl-2">   Inativo</label>
       </div>
       <div class="col-12">
         <label>Dimensão</label>
       </div>
       <div class="col-12">
         <p-checkbox  [(ngModel)]="filme.dimensao" binary="true"></p-checkbox>
-        <label>   3D</label>
+        <label class="pl-2">   3D</label>
       </div>
       <div class="col-12">
-        <p-multiSelect [options]="atorList" [(ngModel)]="filme.atorList" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+        <label>Atores</label>
+      </div>
+      <div class="col-12">
+        <p-multiSelect [options]="atorList" [(ngModel)]="filme.atorList" optionLabel="nome" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+      </div>
+      <div class="col-12">
+        <label>Studio</label>
+      </div>
+      <div class="col-12">
+        <p-dropdown [options]="studioList" [(ngModel)]="filme.studio" optionLabel="nome" [panelStyle]="{minWidth:'12em'}"></p-dropdown>
       </div>
 <!--      Fim Formulário-->
       <div class="col-12">

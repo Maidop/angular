@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
     <div class="card-title">Lista de Atores</div>
-    (<a [routerLink]="'/ator-form'">Cadastrar</a> )
+    <a [routerLink]="'/ator-form'">Cadastrar</a>
     <div class="row">
       <div class="col-12">
         <table class="mt-3 table table-striped table-bordered table-hover">
@@ -21,22 +21,27 @@
               <th class="text-center" scope="row">{{ ator.id }}</th>
               <td>{{ ator.nome }}</td>
               <td>{{ ator.idade }}</td>
-              <td>
-                <button (click)="editar(ator)">Editar</button>
-                <button (click)="excluir(ator)">Excluir</button>
+              <td class="text-right" >
+                <button class="btn btn-primary mr-2" (click)="editar(ator)">Editar</button>
+                <button class="btn btn-primary mr-2" [routerLink]="'/ator-form'"
+                        [queryParams]="{id: ator.id}">
+                  Editar Por Link
+                </button>
+                <button class="btn btn-danger" (click)="excluir(ator)">Excluir</button>
               </td>
             </tr>
           </ng-container>
           </tbody>
         </table>
 
-        <div *ngIf="atorEditar != null" class="col-12">
-          <app-ator-form [ator]="atorEditar"
-                         (onPersist)="atualizarRegistros()"
-                          [editar]="true">
-          </app-ator-form>
-        </div>
-
+        <p-dialog header="Title" [(visible)]="display">
+          <div *ngIf="atorEditar != null" class="col-12">
+            <app-ator-form [ator]="atorEditar"
+                           (onPersist)="atualizarRegistros()"
+                           [editar]="true">
+            </app-ator-form>
+          </div>
+        </p-dialog>
 
       </div>
     </div>

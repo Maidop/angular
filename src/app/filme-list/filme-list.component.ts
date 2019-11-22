@@ -17,6 +17,7 @@ export class FilmeListComponent implements OnInit, OnDestroy {
   filmeEditar: Filme;
   tooltip = '';
   total: number;
+  display = false;
 
   constructor(private filmeService: FilmeService,
               private titleService: Title) {
@@ -34,6 +35,11 @@ export class FilmeListComponent implements OnInit, OnDestroy {
 
   editar(filme: Filme): void {
     this.filmeEditar = JSON.parse(JSON.stringify(filme));
+    this.showDialog();
+  }
+
+  showDialog() {
+    this.display = true;
   }
 
   size(): Observable<number> {
@@ -43,6 +49,7 @@ export class FilmeListComponent implements OnInit, OnDestroy {
   atualizarRegistros(): void {
     this.filmeList$ = this.filmeService.findAll();
     this.filmeEditar = null;
+    this.display = false;
   }
 
   excluir(filme: Filme): void {

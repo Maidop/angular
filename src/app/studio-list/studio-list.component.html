@@ -32,13 +32,14 @@
           </tbody>
         </table>
 
-        <div *ngIf="studioEditar != null" class="col-12">
-          <app-studio-form [studio]="studioEditar"
-                         (onPersist)="atualizarRegistros()"
-                         [editar]="true">
-          </app-studio-form>
-        </div>
-
+        <p-dialog header="Title" [(visible)]="display">
+          <div *ngIf="studioEditar != null" class="col-12">
+            <app-studio-form [studio]="studioEditar"
+                             (onPersist)="atualizarRegistros()"
+                             [editar]="true">
+            </app-studio-form>
+          </div>
+        </p-dialog>
 
       </div>
     </div>

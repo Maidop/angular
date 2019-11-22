@@ -3,9 +3,10 @@ import {Filme} from '../model/Filme';
 import {FilmeService} from '../service/filme.service';
 import {AtorService} from '../service/ator.service';
 import {StudioService} from '../service/studio.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Ator} from '../model/Ator';
 import {Observable} from 'rxjs';
+import {Studio} from '../model/Studio';
 
 @Component({
   selector: 'app-film-form',
@@ -14,20 +15,34 @@ import {Observable} from 'rxjs';
 })
 export class FilmFormComponent {
 
-  @Input() filme: Filme;
+  @Input() filme: Filme = new Filme();
 
   @Input() editar = false;
 
   @Output() onPersist = new EventEmitter<void>();
 
   atorList: Ator[];
+  studioList: Studio[];
 
   constructor(private filmeService: FilmeService,
               private atorService: AtorService,
               private studioService: StudioService,
-              private router: Router) {
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
     atorService.findAll().subscribe(atores => {
       this.atorList = atores;
+    });
+    studioService.findAll().subscribe(studio => {
+      this.studioList = studio;
+    });
+    this.activatedRoute.queryParams.subscribe(p => {
+      const id = p['id'];
+      if (id) {
+        this.filmeService.get(id).subscribe(res => {
+          this.filme = res;
+          this.editar = true;
+        });
+      }
     });
   }
 

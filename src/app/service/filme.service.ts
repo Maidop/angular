@@ -61,4 +61,14 @@ export class FilmeService {
     }
     return total;
   }
+
+  get(id: number): Observable<Filme> {
+    return new Observable((observer) => {
+      this.findAll().subscribe(res => {
+        const filme = res.find(a => a.id == id);
+        observer.next(filme);
+        observer.complete();
+      });
+    });
+  }
 }

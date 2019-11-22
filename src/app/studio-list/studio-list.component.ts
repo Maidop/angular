@@ -13,6 +13,7 @@ export class StudioListComponent implements OnInit {
 
   studioList$: Observable<Studio[]>;
   studioEditar: Studio;
+  display = false;
   constructor(private studioService: StudioService,
               private titleService: Title) {  }
 
@@ -24,6 +25,11 @@ export class StudioListComponent implements OnInit {
 
   editar(studio: Studio): void {
     this.studioEditar = JSON.parse(JSON.stringify(studio));
+    this.showDialog();
+  }
+
+  showDialog() {
+    this.display = true;
   }
 
   size(): Observable<number> {
@@ -33,6 +39,7 @@ export class StudioListComponent implements OnInit {
   atualizarRegistros(): void {
     this.studioList$ = this.studioService.findAll();
     this.studioEditar = null;
+    this.display = false;
   }
 
   excluir(studio: Studio): void {

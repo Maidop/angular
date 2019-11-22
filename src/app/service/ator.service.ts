@@ -18,6 +18,16 @@ export class AtorService {
     return of(JSON.parse(localStorage.getItem(this.KEY_ATORES)));
   }
 
+  get(id: number): Observable<Ator> {
+    return new Observable((observer) => {
+      this.findAll().subscribe(res => {
+        const ator = res.find(a => a.id == id);
+        observer.next(ator);
+        observer.complete();
+      });
+    });
+  }
+
   add(ator: Ator): void {
     this.atorList.push(ator);
     localStorage.setItem(this.KEY_ATORES, JSON.stringify(this.atorList));

@@ -1,6 +1,7 @@
 <div class="card">
   <div class="card-body">
     <div class="card-title">Lista de Filmes</div>
+    <a [routerLink]="'/filme-form'" class="btn btn-dark">Cadastrar</a>
     <div class="row">
       <div class="col-12">
         <table class="mt-3 table table-striped">
@@ -33,6 +34,10 @@
               <td class="text-center">{{filme.dimensao | dimensao}}</td>
               <td class="text-right" >
                 <button class="btn btn-primary mr-2" (click)="editar(filme)">Editar</button>
+                <button class="btn btn-primary mr-2" [routerLink]="'/filme-form'"
+                        [queryParams]="{id: filme.id}">
+                  Editar Por Link
+                </button>
                 <button class="btn btn-danger" (click)="excluir(filme)">Excluir</button>
               </td>
             </tr>
@@ -49,12 +54,15 @@
           </tbody>
         </table>
         <div class="linha"></div>
-        <div *ngIf="filmeEditar != null" class="col-12">
-          <app-film-form [filme]="filmeEditar"
+        <p-dialog header="Title" [(visible)]="display">
+          <div *ngIf="filmeEditar != null" class="col-12">
+            <app-film-form [filme]="filmeEditar"
                            (onPersist)="atualizarRegistros()"
                            [editar]="true">
-          </app-film-form>
-        </div>
+            </app-film-form>
+          </div>
+        </p-dialog>
+
       </div>
     </div>
   </div>

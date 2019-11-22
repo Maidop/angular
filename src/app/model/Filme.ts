@@ -8,7 +8,7 @@ export class Filme {
   titulo: string;
   dataLancamento: Date;
   precoBilhete: number;
-  dataCadastro: Date;
+  dataCadastro: string;
   genero: string;
   atorList: Ator[];
   classificacao: ClassificacaoEnum;
@@ -17,7 +17,7 @@ export class Filme {
   studio: Studio;
 
   constructor() {
-    this.dataCadastro = new Date();
+    this.dataCadastro = '01/01/2010';
     this.atorList = [];
     this.inativo = false;
     this.dimensao = false;
