@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-body">
+    <div class="card-title">Lista de Atores</div>
+    <div class="row">
+      <div class="col-12">
+        <label for="id">Código</label>
+      </div>
+      <div class="col-12">
+        <input id="id" type="number"
+               [disabled]="editar"
+               [(ngModel)]="ator.id"/>
+      </div>
+      <div class="col-12">
+        <label for="nome">Nome</label>
+      </div>
+      <div class="col-12">
+        <input id="nome" name="nome" type="text" [(ngModel)]="ator.nome" #nome="ngModel" required minlength="5"/>
+        <div *ngIf="nome.invalid && (nome.dirty || nome.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="nome.errors.required">
+            Nome é obrigatório.
+          </div>
+          <div *ngIf="nome.errors.minlength">
+            Nome precisa ter mais de 5 caracteres
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <label for="idade">Idade</label>
+      </div>
+      <div class="col-12">
+        <input id="idade" name="idade" type="number" [(ngModel)]="ator.idade" #idade="ngModel" required />
+        <div *ngIf="nome.invalid && (nome.dirty || nome.touched)"
+             class="alert alert-danger">
+          <div *ngIf="nome.errors.required">
+            Idade obrigatória
+          </div>
+      </div>
+      <div class="col-12">
+        <button (click)="adicionar()">{{editar ? 'Editar' : 'Adicionar'}}</button>
+      </div>
+    </div>
+  </div>
+</div>

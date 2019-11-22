@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {Ator} from '../model/Ator';
-import {AtorService} from '../service/ator.service';
+import {Ator} from '../../model/Ator';
+import {AtorService} from '../../service/ator.service';
 import {Title} from '@angular/platform-browser';
 
 @Component({

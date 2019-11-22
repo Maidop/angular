@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Ator} from '../model/Ator';
-import {AtorService} from '../service/ator.service';
+import {Ator} from '../../model/Ator';
+import {AtorService} from '../../service/ator.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({

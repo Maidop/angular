@@ -20,13 +20,30 @@
         <label for="titulo">Titulo</label>
       </div>
       <div class="col-12">
-        <input id="titulo" type="text" [(ngModel)]="filme.titulo"/>
+        <input id="titulo" name="titulo" #titulo="ngModel" type="text" [(ngModel)]="filme.titulo" required/>
+        <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="titulo.errors.required">
+            Nome é obrigatório.
+          </div>
+        </div>
       </div>
       <div class="col-12">
         <label for="valor">Preço do Bilhete</label>
       </div>
       <div class="col-12">
-        <input id="valor" type="number" [(ngModel)]="filme.precoBilhete"/>
+        <input id="valor" type="number" name="valor" #valor="ngModel" [(ngModel)]="filme.precoBilhete" required min="5.00"/>
+        <div *ngIf="valor.invalid && (valor.dirty || valor.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="valor.errors.required">
+            Valor é obrigatório.
+          </div>
+          <div *ngIf="valor.errors.min">
+            Valor precisa ser maior que 5,00 R$
+          </div>
+        </div>
       </div>
       <div class="col-12">
         <p-checkbox id="inativo" [(ngModel)]="filme.inativo" binary="true"></p-checkbox>

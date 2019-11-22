@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FilmeService} from '../service/filme.service';
-import {Filme} from '../model/Filme';
+import {FilmeService} from '../../service/filme.service';
+import {Filme} from '../../model/Filme';
 import {Observable} from 'rxjs';
 import {Title} from '@angular/platform-browser';
 import {iterator} from 'rxjs/internal-compatibility';
-import {Studio} from '../model/Studio';
+import {Studio} from '../../model/Studio';
 
 @Component({
   selector: 'app-filme-list',
@@ -13,7 +13,7 @@ import {Studio} from '../model/Studio';
 })
 export class FilmeListComponent implements OnInit, OnDestroy {
 
-  filmeList$: Observable<Filme[]>;
+  filmeList: Filme[];
   filmeEditar: Filme;
   tooltip = '';
   total: number;
@@ -27,9 +27,9 @@ export class FilmeListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.titleService.setTitle('Cine BootCamp - Filmes');
     this.gerarFilmes();
-    // this.filmeService.remove(filme);
-    // this.filmeService.findAll().subscribe(filmeList => this.filmeList = filmeList);
-    this.filmeList$ = this.filmeService.findAll();
+    this.filmeService.findAll().subscribe(res => {
+      this.filmeList = res;
+    });
     this.total = this.filmeService.total();
   }
 
@@ -47,14 +47,18 @@ export class FilmeListComponent implements OnInit, OnDestroy {
   }
 
   atualizarRegistros(): void {
-    this.filmeList$ = this.filmeService.findAll();
+    this.filmeService.findAll().subscribe(res => {
+      this.filmeList = res;
+    });
     this.filmeEditar = null;
     this.display = false;
   }
 
   excluir(filme: Filme): void {
     this.filmeService.remove(filme);
-    this.filmeList$ = this.filmeService.findAll();
+    this.filmeService.findAll().subscribe(res => {
+      this.filmeList = res;
+    });
   }
 
   private gerarFilmes() {

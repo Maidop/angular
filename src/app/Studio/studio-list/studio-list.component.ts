@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {Studio} from '../model/Studio';
+import {Studio} from '../../model/Studio';
 import {Title} from '@angular/platform-browser';
-import {StudioService} from '../service/studio.service';
+import {StudioService} from '../../service/studio.service';
 
 @Component({
   selector: 'app-studio-list',

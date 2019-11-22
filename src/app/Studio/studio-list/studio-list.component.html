@@ -1,6 +1,6 @@
 <div class="card mt-3">
   <div class="card-body">
-    <div class="card-title">Lista de Atores</div>
+    <div class="card-title">Lista de Studios</div>
     <a [routerLink]="'/studio-form'" class="btn btn-dark">Cadastrar</a>
     <div class="row">
       <div class="col-12">
@@ -25,6 +25,10 @@
               <td class="text-center" >{{ studio.quantidadeFilmes }}</td>
               <td class="text-right" >
                 <button class="btn btn-primary mr-2" (click)="editar(studio)">Editar</button>
+                <button class="btn btn-primary mr-2" [routerLink]="'/studio-form'"
+                        [queryParams]="{id: studio.id}">
+                  Editar Por Link
+                </button>
                 <button class="btn btn-danger" (click)="excluir(studio)">Excluir</button>
               </td>
             </tr>

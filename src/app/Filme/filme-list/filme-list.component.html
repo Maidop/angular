@@ -4,28 +4,21 @@
     <a [routerLink]="'/filme-form'" class="btn btn-dark">Cadastrar</a>
     <div class="row">
       <div class="col-12">
-        <table class="mt-3 table table-striped">
-          <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Data Cadastro</th>
-            <th scope="col">Titulo</th>
-            <th class="text-right" scope="col">Preço Bilhete</th>
-            <th class="text-center" scope="col">Inativo</th>
-            <th class="text-center" scope="col">Dimensão</th>
-            <th class="text-center" scope="col">Ações</th>
-
-          </tr>
-          </thead>
-          <tbody>
-          <ng-container *ngFor="let filme of filmeList$ | async">
-            <tr> <!--[class.verde]="filme.precoBilhete <= 10"
-                [class.azul]="filme.precoBilhete > 10 && filme.precoBilhete < 20"
-                [class.amarelo]="filme.precoBilhete >= 20 && filme.precoBilhete <40"
-                [class.vermelho]="filme.precoBilhete >= 40"
-                [title]="setTootip(filme)"
-                [class.zoom]="filme"
-                *ngIf="filme" > -->
+        <p-table class="mt-3 table table-striped" [value]="filmeList" [paginator]="true" [rows]="2">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Data Cadastro</th>
+              <th pSortableColumn="titulo">Titulo
+                <p-sortIcon field="titulo" ></p-sortIcon></th>
+              <th class="text-right" scope="col">Preço Bilhete</th>
+              <th class="text-center" scope="col">Inativo</th>
+              <th class="text-center" scope="col">Dimensão</th>
+              <th class="text-center" scope="col">Ações</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-filme let-columns="columns">
+            <tr>
               <th scope="row">{{ filme.id }}</th>
               <td>{{ filme.dataCadastro | date:'dd/MM/yyyy' }}</td>
               <td>{{ filme.titulo }}</td>
@@ -36,23 +29,13 @@
                 <button class="btn btn-primary mr-2" (click)="editar(filme)">Editar</button>
                 <button class="btn btn-primary mr-2" [routerLink]="'/filme-form'"
                         [queryParams]="{id: filme.id}">
-                  Editar Por Link
+                  Link
                 </button>
                 <button class="btn btn-danger" (click)="excluir(filme)">Excluir</button>
               </td>
             </tr>
-          </ng-container>
-          <div class="linha"></div>
-          <tr>
-            <td colspan="5"></td>
-            <td class="text-right">Registros: {{(filmeList$ | async).length }}</td>
-          </tr>
-          <tr>
-            <td colspan="5"></td>
-            <td class="text-right">Total: {{total | currency: 'BRL'}} R$</td>
-          </tr>
-          </tbody>
-        </table>
+          </ng-template>
+        </p-table>
         <div class="linha"></div>
         <p-dialog header="Title" [(visible)]="display">
           <div *ngIf="filmeEditar != null" class="col-12">

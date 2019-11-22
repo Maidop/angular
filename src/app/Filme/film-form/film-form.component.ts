@@ -1,12 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Filme} from '../model/Filme';
-import {FilmeService} from '../service/filme.service';
-import {AtorService} from '../service/ator.service';
-import {StudioService} from '../service/studio.service';
+import {Filme} from '../../model/Filme';
+import {FilmeService} from '../../service/filme.service';
+import {AtorService} from '../../service/ator.service';
+import {StudioService} from '../../service/studio.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Ator} from '../model/Ator';
+import {Ator} from '../../model/Ator';
 import {Observable} from 'rxjs';
-import {Studio} from '../model/Studio';
+import {Studio} from '../../model/Studio';
 
 @Component({
   selector: 'app-film-form',

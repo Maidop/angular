@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Studio} from '../model/Studio';
 import {Observable, of} from 'rxjs';
+import {Ator} from '../model/Ator';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,15 @@ export class StudioService {
   clear(): void {
     this.studioList = [];
     localStorage.removeItem(this.KEY_STUDIO);
+  }
+
+  get(id: number): Observable<Studio> {
+    return new Observable((observer) => {
+      this.findAll().subscribe(res => {
+        const studio = res.find(a => a.id == id);
+        observer.next(studio);
+        observer.complete();
+      });
+    });
   }
 }
